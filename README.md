@@ -10,6 +10,18 @@ Learning machine learning and deep learning by implementing core algorithms and 
 - Write experiments and explanations
 - Connect ML/DL foundations to scientific machine learning and protein design
 
+## Installation
+
+Install common dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+Install PyTorch separately depending on your environment.
+
 ## Roadmap
 
 ### Machine Learning Basics
