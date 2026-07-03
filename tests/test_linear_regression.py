@@ -18,6 +18,24 @@ def test_linear_regression_fits_simple_data():
     assert model.bias == pytest.approx(1.0, abs=0.2)
 
 
+def test_linear_regression_fits_multiple_features():
+    rng = np.random.default_rng(42)
+
+    X = rng.normal(size=(200, 2))
+    true_weights = np.array([2.0, -3.0])
+    true_bias = 1.5
+    y = X @ true_weights + true_bias
+
+    model = LinearRegression(lr=0.05, n_epochs=1000)
+    model.fit(X, y)
+
+    assert model.weights is not None
+    assert model.bias is not None
+
+    np.testing.assert_allclose(model.weights, true_weights, atol=0.1)
+    assert model.bias == pytest.approx(true_bias, abs=0.1)
+
+
 def test_predict_shape():
     X = np.array([[1.0], [2.0], [3.0]])
     y = np.array([3.0, 5.0, 7.0])
