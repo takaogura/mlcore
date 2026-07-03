@@ -26,7 +26,7 @@ Install PyTorch separately depending on your environment.
 
 ### Machine Learning Basics
 
-- [ ] Linear Regression
+- [x] Linear Regression
 - [ ] Logistic Regression
 - [ ] Softmax Regression
 - [ ] PCA
