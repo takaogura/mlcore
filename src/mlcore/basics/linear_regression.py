@@ -56,6 +56,8 @@ class LinearRegression:
         return X @ self.weights + self.bias
 
     def score_mse(self, X: np.ndarray, y: np.ndarray) -> float:
-        y = y.reshape(-1)
+        y = np.asarray(y).reshape(-1)
         y_pred = self.predict(X)
+        if y_pred.shape[0] != y.shape[0]:
+            raise ValueError(f"Number of samples in X ({y_pred.shape[0]}) and y ({y.shape[0]}) do not match.")
         return np.mean((y_pred - y) ** 2)
