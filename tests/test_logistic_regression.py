@@ -83,3 +83,25 @@ def test_predict_before_fit_raises_error():
 
     with pytest.raises(RuntimeError):
         model.predict(np.array([[1.0]]))
+
+
+def test_fit_rejects_non_binary_labels():
+    X = np.array([[1.0], [2.0], [3.0]])
+    y = np.array([0, 1, 2])
+
+    model = LogisticRegression()
+
+    with pytest.raises(ValueError):
+        model.fit(X, y)
+
+def test_predict_rejects_wrong_number_of_features():
+    X = np.array([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0]])
+    y = np.array([0, 1, 1])
+
+    model = LogisticRegression(lr=0.1, n_epochs=100)
+    model.fit(X, y)
+
+    X_wrong = np.array([[1.0, 2.0, 3.0]])
+
+    with pytest.raises(ValueError):
+        model.predict(X_wrong)
